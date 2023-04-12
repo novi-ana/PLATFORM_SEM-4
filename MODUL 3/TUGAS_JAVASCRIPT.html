@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tugas Javascript</title>
+  </head>
+  <body background="bg2.jpg">
+    <h2>Noviana Tuesdayantika_215314048</h2>
+    <img src="foto1.jpg" width="200" height="250" valign="middle"><br><br>
+    <script>
+      function tampilkanInputan() {
+        var jml = parseInt(document.getElementById("jml").value);
+        var inputanHTML = "";
+        for (var i = 1; i <= jml; i++) {
+          inputanHTML += '<label for="teks' + i + '">Pilihan ' + i + ':</label>';
+          inputanHTML += '<input type="text" id="teks' + i + '" name="teks' + i + '"><br><br>';
+        }
+        document.getElementById("inputan").innerHTML = inputanHTML;
+        document.getElementById("tombol").style.display = "block";
+      }
+
+      function tampilkanHasil() {
+        var jml = parseInt(document.getElementById("jml").value);
+        var hasilHTML = "";
+        for (var i = 1; i <= jml; i++) {
+          var teks = document.getElementById("teks" + i).value;
+          var value = "pilihan" + i;
+          hasilHTML += '<input type="radio" name="pilihan" value="' + value + '"> ' + teks + '<br>';
+        }
+        hasilHTML += '<br><button type="button" onclick="submitForm()">OK</button>';
+        document.getElementById("hasil").innerHTML = hasilHTML;
+      }
+
+      function submitForm() {
+  var jml = parseInt(document.getElementById("jml").value);
+  var pilihan = document.getElementsByName("pilihan");
+  var hasilHTML = "";
+  for (var i = 0; i < pilihan.length; i++) {
+    if (pilihan[i].checked) {
+      var teksPilihan = document.getElementById("teks" + (i+1)).value;
+      hasilHTML += teksPilihan;
+      break;
+    }
+  }
+  var nama = document.getElementById("nama").value;
+  var pilhan = "";
+  for (var i = 1; i <= jml; i++) {
+    var teks = document.getElementById("teks" + i).value;
+    pilhan += teks;
+    if (i < jml) {
+      pilhan += ', ';
+    }
+  }
+  alert("Hallo, nama saya " + nama + ", saya mempunyai sejumlah " + jml + " pilihan yaitu " + pilhan + " dan saya memilih " + hasilHTML + ".");
+}
+
+    </script>
+    <form>
+      <label for="nama">Nama  :</label>
+      <input style="margin-left:60px" type="text" id="nama" name="nama"><br><br>
+      <label for="jml">Jumlah Pilihan :</label>
+      <input type="number" id="jml" name="jml"><br><br>
+      <button type="button" onclick="tampilkanInputan()">OK</button>
+    </form>
+
+    <div id="inputan"></div>
+    <button id="tombol" style="display:none;" onclick="tampilkanHasil()">OK</button>
+
+    <div id="hasil"></div>
+  </body>
+</html>
